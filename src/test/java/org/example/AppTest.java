@@ -1,9 +1,9 @@
 package org.example;
 
 import org.example.entity.*;
+import org.example.utils.SessionManager;
 import org.junit.jupiter.api.Test;
 import lombok.Cleanup;
-import org.hibernate.cfg.Configuration;
 
 import java.util.HashSet;
 import java.util.List;
@@ -12,10 +12,7 @@ import java.util.Set;
 public class AppTest {
     @Test
      void saveCourses() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
         var courseJavaEE = Course.builder()
                 .name("Java Enterprise")
@@ -33,10 +30,7 @@ public class AppTest {
     }
     @Test
     void deleteJavaEECourse() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
 
         var query = session.createQuery(" from " + Course.class.getSimpleName());
@@ -49,10 +43,7 @@ public class AppTest {
     }
     @Test
     void saveStudent() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
 
         var student = Students.builder()
@@ -80,10 +71,7 @@ public class AppTest {
 
     @Test
     void findJavaEEStudents() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
 
         var query = session.createQuery(" from " + Course.class.getSimpleName());
@@ -102,10 +90,7 @@ public class AppTest {
     }
     @Test
     void saveStudentProfile() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
 
         var query = session.createQuery(" from " + Students.class.getSimpleName());
@@ -124,10 +109,7 @@ public class AppTest {
 
     @Test
     void deleteStudents() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
         session.beginTransaction();
 
         var query = session.createQuery(" from " + Course.class.getSimpleName());
@@ -142,10 +124,7 @@ public class AppTest {
 
     @Test
     void saveTrainer() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
 
         session.beginTransaction();
 
@@ -164,11 +143,7 @@ public class AppTest {
 
     @Test
     void updateCourse() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
 
         session.beginTransaction();
 
@@ -180,11 +155,7 @@ public class AppTest {
 
     @Test
     void deleteCourse() {
-        Configuration configuration = new Configuration();
-        configuration.configure();
-
-        @Cleanup var sessionFactory = configuration.buildSessionFactory();
-        @Cleanup var session = sessionFactory.openSession();
+        @Cleanup var session = SessionManager.get();
 
         session.beginTransaction();
 
